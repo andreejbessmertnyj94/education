@@ -1,5 +1,5 @@
 function isOdd(a) {
-  //Напиши свой код здесь
+  return !(a % 2);
 }
 
 window.isOdd = isOdd;
