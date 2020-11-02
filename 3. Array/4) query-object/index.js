@@ -4,14 +4,11 @@ function queryToObject(query) {
   if (query.startsWith("?")) {
     query = query.slice(1);
   }
-  const objects = query.split("&");
-  let result = {};
-  let keyValue;
-  for (const element of objects) {
-    keyValue = element.split("=");
-    result[String(keyValue[0])] = stringToType(keyValue[1]);
-  }
-  return result;
+  return query.split("&").reduce((accumulator, currentValue) => {
+    let keyValue = currentValue.split("=");
+    accumulator[String(keyValue[0])] = stringToType(keyValue[1]);
+    return accumulator;
+  }, {});
 }
 
 window.queryToObject = queryToObject;
