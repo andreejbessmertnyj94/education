@@ -1,9 +1,6 @@
 function isValidEmail(email) {
-  if (email.split("@").length !== 2) {
-    return false;
-  }
-  const postfix = email.split("@")[1].split(".");
-  return !!(postfix[0] && postfix[1]);
+  const regexp = /^.+[@][a-z]+\.[a-z]+$/gm;
+  return regexp.test(email);
 }
 
 window.isValidEmail = isValidEmail;
