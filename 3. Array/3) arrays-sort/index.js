@@ -3,12 +3,13 @@ function arraysSort(arr) {
   let indexAndMaxElement = [];
   let result = [];
   for (let index in arr) {
-    maxNum = -Infinity;
-    for (const element of arr[index]) {
-      if (element > maxNum) {
-        maxNum = element;
-      }
-    }
+    // maxNum = -Infinity;
+    // for (const element of arr[index]) {
+    //   if (element > maxNum) {
+    //     maxNum = element;
+    //   }
+    // }
+    maxNum = Math.max(...arr[index]);
     indexAndMaxElement.push([index, maxNum]);
   }
   indexAndMaxElement.sort(function (a, b) {
