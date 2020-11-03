@@ -8,30 +8,24 @@
  */
 
 class TokenService {
-  subscribers = { defaultSubscriber: [] };
-  currentSubscriber = "defaultSubscriber";
+  subscribers = [];
 
   subscribe(subscriber) {
-    if (!Object.keys(this.subscribers).includes(subscriber)) {
-      this.subscribers[subscriber] = [];
-    }
-    this.currentSubscriber = subscriber;
+    this.subscribers.push(subscriber);
+    return this;
   }
 
   setToken(token) {
-    this.subscribers[this.currentSubscriber].push(token);
+    this.subscribers.forEach(function (fn) {
+      fn(token);
+    });
+
+    return this;
   }
 
-  removeToken() {
-    this.subscribers[this.currentSubscriber].pop();
-  }
+  removeToken() {}
 
-  getToken() {
-    if (this.subscribers[this.currentSubscriber].length) {
-      return this.subscribers[this.currentSubscriber][0];
-    }
-    return null;
-  }
+  getToken() {}
 }
 
 window.TokenService = TokenService;
