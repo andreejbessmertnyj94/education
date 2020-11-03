@@ -1,14 +1,6 @@
-/*
-  Задача
-  Написать TokenService, в котором есть слудеющие функции
-  subscribe(callback) - добавляет подписку на изменение токена (параметром будет новый токен, или null, если токен удален)
-  setToken(token) - устанавливает значения токена (вызывает подписчиков)
-  removeToken() - удаляет токен (вызвает подписчиков на изменеия)
-  getToken() - возващяет токен
- */
-
 class TokenService {
   subscribers = [];
+  token = null;
 
   subscribe(subscriber) {
     this.subscribers.push(subscriber);
@@ -16,6 +8,7 @@ class TokenService {
   }
 
   setToken(token) {
+    this.token = token;
     this.subscribers.forEach(function (fn) {
       fn(token);
     });
@@ -23,9 +16,18 @@ class TokenService {
     return this;
   }
 
-  removeToken() {}
+  removeToken() {
+    this.token = null;
+    this.subscribers.forEach(function (fn) {
+      fn(null);
+    });
 
-  getToken() {}
+    return this;
+  }
+
+  getToken() {
+    return this.token;
+  }
 }
 
 window.TokenService = TokenService;
