@@ -1,6 +1,8 @@
 class TokenService {
-  subscribers = [];
-  token = null;
+  constructor() {
+    this.subscribers = [];
+    this.token = null;
+  }
 
   subscribe(subscriber) {
     this.subscribers.push(subscriber);
