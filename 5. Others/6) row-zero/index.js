@@ -1,5 +1,5 @@
 function rowZero(str) {
-  // Напиши свой код здесь
+  return Math.max(...str.split("1").map((element) => element.length));
 }
 
 window.rowZero = rowZero;
